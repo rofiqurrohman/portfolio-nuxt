@@ -1,0 +1,44 @@
+// Project settings for Zed: this repo is formatted by ESLint (@nuxt/eslint stylistic
+// rules: 2 spaces, single quotes, no semicolons), never by Prettier.
+{
+  "tab_size": 2,
+  "hard_tabs": false,
+  "ensure_final_newline_on_save": true,
+  "remove_trailing_whitespace_on_save": true,
+  "prettier": {
+    "allowed": false
+  },
+  "languages": {
+    "JavaScript": {
+      "tab_size": 2,
+      "format_on_save": "on",
+      "formatter": [],
+      "code_actions_on_format": { "source.fixAll.eslint": true }
+    },
+    "TypeScript": {
+      "tab_size": 2,
+      "format_on_save": "on",
+      "formatter": [],
+      "code_actions_on_format": { "source.fixAll.eslint": true }
+    },
+    "TSX": {
+      "tab_size": 2,
+      "format_on_save": "on",
+      "formatter": [],
+      "code_actions_on_format": { "source.fixAll.eslint": true }
+    },
+    "Vue.js": {
+      "tab_size": 2,
+      "format_on_save": "on",
+      "formatter": [],
+      "code_actions_on_format": { "source.fixAll.eslint": true },
+      "language_servers": ["vue-language-server", "eslint", "..."]
+    },
+    "JSON": {
+      "format_on_save": "off"
+    },
+    "CSS": {
+      "format_on_save": "off"
+    }
+  }
+}

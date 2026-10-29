@@ -1,0 +1,179 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Raleway", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Portfolio palette, carried over from the legacy site */
+  --color-imp: var(--imp-text-color);
+  --color-brand: #cd5ff8;
+  --color-brand-strong: #623686;
+  --color-brand-hover: #6d20c5;
+  --color-footer: rgb(10 4 22);
+  --color-nav: #1b1a2ea9;
+  --color-nav-mobile: #181a27;
+}
+
+/* The site only has a dark theme, matching the legacy design. */
+:root {
+  --radius: 0.625rem;
+  --imp-text-color: #c770f0;
+  --section-background: linear-gradient(to bottom left, rgb(17 16 16 / 0.582), rgb(12 8 24 / 0.904));
+  --image-gradient: linear-gradient(to bottom left, rgb(17 16 16 / 0.678), rgb(12 10 22 / 0.863));
+  --page-background: linear-gradient(to left, rgb(27 20 41), rgb(20 15 35));
+
+  --background: rgb(20 15 35);
+  --foreground: #ffffff;
+  --card: transparent;
+  --card-foreground: #ffffff;
+  --popover: rgb(27 20 41);
+  --popover-foreground: #ffffff;
+  --primary: #623686;
+  --primary-foreground: #ffffff;
+  --secondary: rgb(147 76 206 / 0.37);
+  --secondary-foreground: #ffffff;
+  --muted: rgb(82 52 121 / 0.36);
+  --muted-foreground: #d4c4e3;
+  --accent: rgb(162 77 211 / 0.53);
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: rgb(200 137 230 / 0.637);
+  --input: rgb(200 137 230 / 0.4);
+  --ring: #c770f0;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-foreground font-sans antialiased;
+    background-image: var(--page-background);
+    background-color: var(--background);
+    min-height: 100vh;
+  }
+}
+
+@utility purple {
+  color: var(--imp-text-color);
+}
+
+@utility section-surface {
+  background-image: var(--section-background);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d1950;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(178 121 216 / 0.959);
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(222 130 235 / 0.911);
+}
+
+/* Waving hand on the home page */
+.wave {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave-animation 2.1s infinite;
+}
+
+@keyframes wave-animation {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* CSS-only entrance for above-the-fold content (see RevealOnScroll `immediate`) */
+.reveal-now {
+  animation: reveal-up 0.5s ease-out both;
+  animation-delay: var(--reveal-delay, 0s);
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* Typewriter cursor */
+.typewriter-cursor {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  50% { opacity: 0; }
+}
+
+/* Route transition */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 200ms ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .wave,
+  .typewriter-cursor,
+  .reveal-now {
+    animation: none;
+  }
+
+  .page-enter-active,
+  .page-leave-active {
+    transition: none;
+  }
+}
